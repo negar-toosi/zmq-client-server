@@ -24,4 +24,3 @@ class Client:
         finally:
             socket.close()
             context.term()
-

@@ -16,25 +16,24 @@ if __name__ == "__main__":
     # Create client and send requests
     client = Client()
 
-    # Test OS Command
-    os_request = {
-                "command_type": "os", 
-                "command_name": "ping", 
-                "parameters": [
-                        "127.0.0.1", 
-                        "-n",
-                        "6"]
- }
-    request = {
-                "command_type": "os", 
-                "command_name": "ls", 
-                "parameters": [
-                        "-lt"]
- }
-    print("Sending OS Command...")
-    response = client.send_request(os_request)
-    print(response)
     
-    # Optionally, you can add a sleep to allow the server to process
     import time
     time.sleep(1)  # Wait for a moment to allow server to process
+
+   
+    # Sending multiple requests sequentially
+    request_1 = {"command_type": "os", "command_name": "ls", "parameters": ["-l"]}
+    request_2 = {"command_type": "compute","expression":"2+3**6"}
+    request_3 = {"command_type": "os", "command_name": "ping", "parameters": ["127.0.0.1"]}
+    
+    
+    print("Sending OS Command 1...")
+    print(client.send_request(request_1))
+
+    print("Sending OS Command 2...")
+    print(client.send_request(request_2))
+
+    print("Sending OS Command 3...")
+    print(client.send_request(request_3))
+
+    
