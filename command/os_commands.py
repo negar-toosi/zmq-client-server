@@ -1,6 +1,6 @@
 from command.command import Commands
 import subprocess #this is for run os commands
-
+import json
 
 class OSCommands(Commands):
     def clean_data(self,payload):
@@ -17,5 +17,17 @@ class OSCommands(Commands):
         pass
     def execute(self,payload):
         result = self.clean_data(payload)
-        result = subprocess.run(result)
-        return result
+        result = subprocess.run(result,
+                                stdout=subprocess.PIPE,  # Capture standard output
+                                stderr=subprocess.PIPE,
+                                text=True)
+        try:
+            return json.loads(result.stdout)  # Parse JSON from stdout
+        except json.JSONDecodeError:
+            # Return stdout and stderr if output is not JSON
+            return {
+                "stdout": result.stdout,
+            }
+
+
+        

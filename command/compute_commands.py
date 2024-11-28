@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from command.command import Commands
 
+
 @dataclass
 class ComputeCommands(Commands):
     def clean_data(self,payload):
@@ -13,5 +14,7 @@ class ComputeCommands(Commands):
     def validation_data(self,payload):
         pass
     def execute(self,payload):
-        return self.clean_data(payload)
+        expression = self.clean_data(payload)
+        return expression
+        
 
