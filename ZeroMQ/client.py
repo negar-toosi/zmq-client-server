@@ -9,6 +9,7 @@ class Client:
     def send_request(self, request):
         context = zmq.Context() # create a container for all the sockets of a single process.
         socket = context.socket(zmq.REQ)  # REQ socket for request
+        
         try:
             # Connect to the server
             socket.connect(self.address)

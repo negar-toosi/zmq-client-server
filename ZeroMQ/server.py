@@ -16,21 +16,20 @@ class Server:
         print(f"Server running at {self.address}...")
 
         while True:
-            try:
-                # Receive and decode JSON request
-                message = socket.recv_json() # deserializes the JSON string into a Python dictionary.
-                print(f"Received: {message}")
+            # try:
+            # Receive and decode JSON request
+            message = socket.recv_json() # deserializes the JSON string into a Python dictionary.
+            print(f"Received: {message}")
+            # Process the request
+            factory = CommandFactory()
+            command = factory.get_command(message.get("command_type"))
+            response = command.execute(message)
+            
+            # Send response
+            socket.send_json(response)
                 
-                # Process the request
-                factory = CommandFactory()
-                command = factory.get_command(message.get("command_type"))
-                response = command.execute(message)
-                
-                # Send response
-                socket.send_json(response)
-                
-            except Exception as e:
-                socket.send_json({"error": str(e)})
+            # except Exception as e:
+            #     socket.send_json({"error": str(e)})
             
 
 

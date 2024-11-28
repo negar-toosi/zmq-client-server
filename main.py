@@ -23,7 +23,7 @@ if __name__ == "__main__":
    
     # Sending multiple requests sequentially
     request_1 = {"command_type": "os", "command_name": "ls", "parameters": ["-l"]}
-    request_2 = {"command_type": "compute","expression":"2+4"}
+    request_2 = {"command_type": "compute","expression":"print(4)"}
     # request_3 = {"command_type": "os", "command_name": "ping", "parameters": ["127.0.0.1"]}
     
     
