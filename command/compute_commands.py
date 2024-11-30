@@ -13,8 +13,7 @@ class ComputeCommands(Commands):
             return "The expression contains invalid characters. Use only numbers and the operators +, -, *, and /."
         else:
             try:
-                result = eval(expression)
-                return self.clean_data(payload)
+                return eval(expression)
             except SyntaxError:
                 return "Your mathematical expression is invalid. Please fix the syntax and try again."
             except NameError:

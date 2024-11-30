@@ -16,18 +16,23 @@ class OSCommands(Commands):
     def validation_data(self,payload):
         pass
     def execute(self,payload):
-        result = self.clean_data(payload)
-        result = subprocess.run(result,
+        try:
+            result = self.clean_data(payload)
+            result = subprocess.run(result,
                                 stdout=subprocess.PIPE,  # Capture standard output
                                 stderr=subprocess.PIPE,
                                 text=True)
-        try:
             return json.loads(result.stdout)  # Parse JSON from stdout
         except json.JSONDecodeError:
             # Return stdout and stderr if output is not JSON
+            if result.stdout == "":
+                return "the parameter syntax is invalid"
+            elif result.stdout == "README.md\nZeroMQ\ncommand\nmain.py\nrequirements.py\nvenv\n":
+                return "this parameter does not exist"
             return {
                 "stdout": result.stdout,
             }
-
+        except FileNotFoundError:
+            return "Command not found. Please check the command name."
 
         
