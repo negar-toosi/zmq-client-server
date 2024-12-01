@@ -28,12 +28,21 @@ I used the **Request-Reply Pattern** for communication between the client and se
 
 ## Installation and Setup
 
-### Prerequisites
-Ensure you have the following installed:
-- Python 3.6+
-- `pyzmq` library (for ZeroMQ support)
-
 ### Install Dependencies
-To install the required dependencies, use the following command:
+
+1. **Clone the Repository**:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/username/repository-name.git
+cd zmq-server-client
+```
+2. **Start servers**:
+- Start ZeroMQ Server:
+```bash
+python zmq_server/server.py
+```
+- Start Django Server in another terminal:
+```bash
+python manage.py runserver
+```
+## Usage
+you can send a POST request to http://127.0.0.1:8000/api/ endpoint in Postman or Curl
