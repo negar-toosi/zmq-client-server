@@ -46,3 +46,18 @@ python manage.py runserver
 ```
 ## Usage
 you can send a POST request to http://127.0.0.1:8000/api/ endpoint in Postman or Curl
+### Example 1: Compute Command
+```bash
+{
+    "command_type": "compute",
+    "expression": "2 + 3 * (4 - 1)"
+}
+```
+### Example 2: OS command
+```bash
+{
+    "command_type": "os",
+    "command_name": "ls",
+    "parameters": ["-l"]
+}
+```
